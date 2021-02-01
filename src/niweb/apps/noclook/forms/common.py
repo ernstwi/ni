@@ -332,12 +332,9 @@ class EditPeeringGroupForm(forms.Form):
 
 
 class NewRackForm(forms.Form):
-    def __init__(self, *args, **kwargs):
-        super(NewRackForm, self).__init__(*args, **kwargs)
-        self.fields['relationship_location'].choices = get_node_type_tuples('Site')
 
     name = forms.CharField(help_text='Name should be the grid location.')
-    relationship_location = relationship_field('location', True)
+    relationship_location = relationship_field('location')
 
 
 class EditRackForm(forms.Form):
