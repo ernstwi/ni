@@ -346,6 +346,8 @@ class EditRackForm(forms.Form):
     width = forms.IntegerField(required=False,
                                help_text='Width in millimeters (mm).')
     rack_units = forms.IntegerField(required=False, help_text='Height in rack units (u).')
+    rack_direction_top = forms.BooleanField(required=False, help_text='First rack unit at top of rack?',
+                                   label='Top down counting')
     relationship_parent = relationship_field('parent')
     relationship_located_in = relationship_field('located in')
 
