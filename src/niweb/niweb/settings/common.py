@@ -192,6 +192,7 @@ TEMPLATES = [
 ### LOGIN conf
 DJANGO_LOGIN_DISABLED = environ.get('DJANGO_LOGIN_DISABLED', False)
 SAML_ENABLED = environ.get('SAML_ENABLED', False)
+REMOTE_USER = environ.get('REMOTE_USER', True)
 
 ########## MIDDLEWARE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#middleware-classes
@@ -210,6 +211,7 @@ MIDDLEWARE = (
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
+
 if SAML_ENABLED:
     AUTHENTICATION_BACKENDS += (
         environ.get('SAML_BACKEND', 'djangosaml2.backends.Saml2Backend'),
@@ -221,6 +223,10 @@ if SAML_ENABLED:
     # Needed since django 2+ sets lax per default
     # SESSION_COOKIE_SAMESITE = None
     SESSION_COOKIE_SECURE = True
+
+if REMOTE_USER:
+    AUTHENTICATION_BACKENDS += ( 'apps.saml_external.backend.RemoteUserBackendBlockUnknown', )
+    MIDDLEWARE += ( 'apps.saml_external.middleware.RemoteUserMiddlewareHTTP', )
 ######### END AUTHENTICATION BACKENDS CONFIGURATION
 
 ########## URL CONFIGURATION
