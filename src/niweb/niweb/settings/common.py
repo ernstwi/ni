@@ -192,7 +192,7 @@ TEMPLATES = [
 ### LOGIN conf
 DJANGO_LOGIN_DISABLED = environ.get('DJANGO_LOGIN_DISABLED', False)
 SAML_ENABLED = environ.get('SAML_ENABLED', False)
-REMOTE_USER = environ.get('REMOTE_USER', True)
+REMOTE_USER = environ.get('REMOTE_USER', False)
 
 ########## MIDDLEWARE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#middleware-classes
