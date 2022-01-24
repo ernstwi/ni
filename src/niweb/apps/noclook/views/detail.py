@@ -678,12 +678,13 @@ def service_detail(request, handle_id):
     relations = service.get_relations()
     dependent = service.get_dependent_as_types()
     dependencies = service.get_dependencies_as_types()
+    tickets = service.get_tickets()
 
     urls = helpers.get_node_urls(service, dependent, dependencies, relations)
     return render(request, 'noclook/detail/service_detail.html',
                   {'node': service, 'node_handle': nh, 'last_seen': last_seen, 'expired': expired,
                    'dependent': dependent, 'dependencies': dependencies, 'relations': relations,
-                   'history': True, 'urls': urls})
+                   'history': True, 'urls': urls, 'tickets': tickets})
 
 
 @login_required
