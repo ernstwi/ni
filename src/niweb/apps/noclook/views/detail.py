@@ -560,7 +560,7 @@ def port_detail(request, handle_id):
         'connection_path': connection_path,
         'units': units,
         'history': True,
-        'urls': urls,
+        'urls': urls
     })
 
 
