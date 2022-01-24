@@ -11,6 +11,8 @@ services:
       - POSTGRES_PASSWORD=docker
     networks:
       - dev
+    ports:
+      - '127.0.0.1:5432:5432'
   neo4j:
     image: neo4j:3.5
     volumes:
@@ -20,17 +22,17 @@ services:
       - '127.0.0.1:7687:7687'
     networks:
       - dev
-  neo4j-test:
-    image: neo4j:3.5
-    volumes:
-      - ./data/neo4j-test:/data
-    environment:
-      - NEO4J_AUTH=neo4j/docker
-    ports:
-      - '127.0.0.1:6464:7474'
-      - '127.0.0.1:6686:7687'
-    networks:
-      - dev
+  # neo4j-test:
+  #   image: neo4j:3.5
+  #   volumes:
+  #     - ./data/neo4j-test:/data
+  #   environment:
+  #     - NEO4J_AUTH=neo4j/docker
+  #   ports:
+  #     - '127.0.0.1:6464:7474'
+  #     - '127.0.0.1:6686:7687'
+  #   networks:
+  #     - dev
   norduni:
     build: ../
     ports:

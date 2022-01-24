@@ -560,7 +560,7 @@ def port_detail(request, handle_id):
         'connection_path': connection_path,
         'units': units,
         'history': True,
-        'urls': urls
+        'urls': urls,
     })
 
 
@@ -720,6 +720,8 @@ def site_detail(request, handle_id):
     rooms_table = Table('Rooms')
     rooms_table.rows = [TableRow(r.get('room')) for r in rooms_list]
 
+    tickets = site.get_tickets()
+
     urls = helpers.get_node_urls(site, equipment_relationships, relations, rack_list, rooms_list)
     return render(request, 'noclook/detail/site_detail.html',
                   {'node_handle': nh,
@@ -733,6 +735,7 @@ def site_detail(request, handle_id):
                    'history': True,
                    'urls': urls,
                    'rack_list': rack_list,
+                   'tickets': tickets
                    })
 
 
@@ -762,6 +765,8 @@ def room_detail(request, handle_id):
 
     location_path = room.get_location_path()
 
+    tickets = room.get_tickets()
+
     urls = helpers.get_node_urls(room, equipment_relationships, relations, rack_list)
     return render(request, 'noclook/detail/room_detail.html',
                   {'node_handle': nh,
@@ -774,6 +779,7 @@ def room_detail(request, handle_id):
                    'history': True,
                    'urls': urls,
                    'location_path': location_path,
+                   'tickets': tickets
                    })
 
 

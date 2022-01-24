@@ -1,0 +1,3 @@
+[submodule "python-norduniclient"]
+	path = python-norduniclient
+	url = git@github.com:ernstwi/python-norduniclient.git

@@ -575,6 +575,30 @@ class EndUserResource(NodeHandleResource):
         }
 
 
+class TicketResource(NodeHandleResource):
+    class Meta:
+        queryset = NodeHandle.objects.filter(node_type__slug__exact='ticket')
+        resource_name = 'ticket'
+        authentication = ApiKeyAuthentication()
+        authorization = Authorization()
+        allowed_methods = ['get', 'put', 'post']
+        filtering = {
+            "node_name": ALL,
+        }
+
+    def _initial_form_data(self, bundle):
+        initial_data = {
+            'node_type': '/api/v1/node_type/ticket/',
+            'node_meta_type': 'Logical',
+        }
+        return initial_data
+
+    def obj_create(self, bundle, **kwargs):
+        helpers.slug_to_node_type('ticket', create=True)
+        bundle.data.update(self._initial_form_data(bundle))
+        return super(TicketResource, self).obj_create(bundle, **kwargs)
+
+
 class ExternalEquipmentResource(NodeHandleResource):
 
     class Meta:

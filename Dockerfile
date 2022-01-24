@@ -8,6 +8,7 @@ WORKDIR /app
 
 ADD src /app
 ADD requirements /app/requirements
+ADD python-norduniclient /app/python-norduniclient
 RUN apk add --no-cache --virtual build-dependencies postgresql-dev musl-dev gcc python3-dev && \
       pip3 install -r requirements/dev.txt && \
       apk del build-dependencies && \

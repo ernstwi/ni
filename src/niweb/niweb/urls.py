@@ -56,6 +56,7 @@ v1_api.register(niapi.SiteResource())
 v1_api.register(niapi.SiteOwnerResource())
 v1_api.register(niapi.SwitchResource())
 v1_api.register(niapi.UnitResource())
+v1_api.register(niapi.TicketResource())
 # other
 v1_api.register(niapi.HostScanResource())
 if "apps.scan" in settings.INSTALLED_APPS:

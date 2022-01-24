@@ -1,0 +1,12 @@
+<div class="section">
+    <h3>Tickets</h3>
+    {% if not tickets %}
+        No tickets.
+    {% else %}
+        <ul>
+        {% for ticket in tickets %}
+            <li><a href="https://ticket.nordu.net/browse/{{ ticket.node.ni_id }}">{{ ticket.node.name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</div>
