@@ -599,11 +599,10 @@ class TicketResource(NodeHandleResource):
         }
 
     def _initial_form_data(self, bundle):
-        initial_data = {
+        return {
             'node_type': '/api/v1/node_type/ticket/',
             'node_meta_type': 'Logical',
         }
-        return initial_data
 
 
 class ExternalEquipmentResource(NodeHandleResource):
