@@ -593,7 +593,7 @@ class TicketResource(NodeHandleResource):
         resource_name = 'ticket'
         authentication = ApiKeyAuthentication()
         authorization = Authorization()
-        allowed_methods = ['get', 'put', 'post']
+        allowed_methods = ['get', 'post', 'delete']
         filtering = {
             "node_name": ALL,
         }
