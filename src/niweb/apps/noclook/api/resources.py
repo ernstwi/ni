@@ -199,6 +199,7 @@ class NodeHandleResource(ModelResource):
             'creator': '/api/%s/user/%d/' % (self._meta.api_name, bundle.request.user.pk),
             'modifier': '/api/%s/user/%d/' % (self._meta.api_name, bundle.request.user.pk),
         })
+        helpers.slug_to_node_type(self.Meta.resource_name, create=True)
         bundle = super(NodeHandleResource, self).obj_create(bundle, **kwargs)
         return self.hydrate_node(bundle)
 
@@ -592,11 +593,6 @@ class TicketResource(NodeHandleResource):
             'node_meta_type': 'Logical',
         }
         return initial_data
-
-    def obj_create(self, bundle, **kwargs):
-        helpers.slug_to_node_type('ticket', create=True)
-        bundle.data.update(self._initial_form_data(bundle))
-        return super(TicketResource, self).obj_create(bundle, **kwargs)
 
 
 class ExternalEquipmentResource(NodeHandleResource):
