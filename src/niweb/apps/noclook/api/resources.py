@@ -203,6 +203,17 @@ class NodeHandleResource(ModelResource):
         bundle = super(NodeHandleResource, self).obj_create(bundle, **kwargs)
         return self.hydrate_node(bundle)
 
+    def obj_delete_list(self, bundle, **kwargs):
+        """
+        We override TastyPie's obj_delete_list, since this will only call
+        QuerySet.delete(), which removes NodeHandle models from postgres but
+        leaves behind Neo4J nodes.
+        """
+        objects_to_delete = self.obj_get_list(bundle=bundle, **kwargs)
+        deletable_objects = self.authorized_delete_list(objects_to_delete, bundle)
+        for authed_obj in deletable_objects:
+            authed_obj.delete()
+
     def prepend_urls(self):
         return [
             re_path(r"^(?P<resource_name>%s)/(?P<pk>\w[\w/-]*)/relationships/(?P<rel_type>\w[\w]*)%s$" % (
