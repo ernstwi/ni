@@ -598,11 +598,7 @@ class TicketResource(NodeHandleResource):
             "node_name": ALL,
         }
 
-    def _initial_form_data(self, bundle):
-        return {
-            'node_type': '/api/v1/node_type/ticket/',
-            'node_meta_type': 'Logical',
-        }
+    # TODO: Set node_type and node_meta_type from here instead of from script
 
 
 class ExternalEquipmentResource(NodeHandleResource):
