@@ -222,8 +222,8 @@ if SAML_ENABLED:
     SESSION_COOKIE_SAMESITE = None
 
 if REMOTE_USER:
-    AUTHENTICATION_BACKENDS += ( 'apps.saml_external.backend.RemoteUserBackendBlockUnknown', )
-    MIDDLEWARE += ( 'apps.saml_external.middleware.RemoteUserMiddlewareHTTP', )
+    AUTHENTICATION_BACKENDS += ( 'apps.saml_external.backend.XRemoteUserBackend', )
+    MIDDLEWARE += ( 'apps.saml_external.middleware.XRemoteUserMiddleware', )
 ######### END AUTHENTICATION BACKENDS CONFIGURATION
 
 ########## URL CONFIGURATION
